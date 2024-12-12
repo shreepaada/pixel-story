@@ -1,0 +1,165 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #87ceeb, #ffffff); /* Sky and ground */
+}
+
+.game-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Character Styles */
+.character {
+  position: absolute;
+  width: 64px; /* Frame width */
+  height: 64px; /* Frame height */
+  animation: none; /* No animation by default */
+}
+
+/* Main Character (Player) */
+.main {
+  background: url('main_char_guy.png') no-repeat;
+  background-position: 0px -704px; /* Default: Right walking row */
+  bottom: 10%; /* Standing on the "ground" */
+  left: 40%; /* Updated position for better alignment */
+}
+
+/* Girl Character */
+.girl {
+  background: url('girl.png') no-repeat;
+  bottom: 10%;
+  left: 45%; /* Girl moved closer to the main character */
+  background-position: 0px -640px; /* Idle position row */
+}
+
+/* Floating Hearts */
+.hearts-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url('heart.gif'); /* Use the heart GIF here */
+  background-size: cover;
+  animation: float-hearts 3s ease-in-out infinite;
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+  position: absolute;
+  max-width: 180px; /* Reduced width */
+  padding: 8px;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  display: none;
+  z-index: 10;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Main Character's Speech Bubble */
+.main-bubble {
+  bottom: 130px; /* Closer to the main character */
+  left: 42%; /* Positioned relative to the adjusted main character position */
+}
+
+.main-bubble::after {
+  bottom: -10px;
+  left: 20px;
+  border-width: 10px 10px 0;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Girl's Speech Bubble */
+.girl-bubble {
+  bottom: 130px; /* Closer to the girl character */
+  left: 47%; /* Positioned relative to the adjusted girl character position */
+  text-align: left;
+}
+
+.girl-bubble::after {
+  bottom: -10px;
+  left: 20px;
+  border-width: 10px 0 0 10px;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Floating Hearts Animation */
+@keyframes float-hearts {
+  0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-200px) scale(1.2);
+  }
+}
+
+/* Walking Animations */
+@keyframes walk-right {
+  from {
+      background-position: 0px -704px; /* Start of row 12 */
+  }
+  to {
+      background-position: -576px -704px; /* 9 frames × 64px each */
+  }
+}
+
+@keyframes walk-left {
+  from {
+      background-position: 0px -576px; /* Start of row 10 */
+  }
+  to {
+      background-position: -832px -576px; /* 13 frames × 64px each */
+  }
+}
+
+/* Girl Turning Animation */
+@keyframes girl-turn-left {
+  from {
+      background-position: 0px -64px; /* First frame of the second row */
+  }
+  to {
+      background-position: -256px -64px; /* Fourth frame of the second row */
+  }
+}
+
+/* Rich Guy Character */
+.rich-guy {
+  background: url('rich_guy.png') no-repeat;
+  bottom: 10%; /* Same ground level as other characters */
+  left: 55%; /* Position for the scene */
+  background-position: 0px -640px; /* Idle position row */
+  display: none; /* Initially hidden */
+}
+
+/* Fade-out Animation */
+@keyframes fade-out {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}
