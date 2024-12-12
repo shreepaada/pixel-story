@@ -9,16 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
   richGuyBubble.classList.add("speech-bubble", "rich-guy-bubble");
   document.querySelector(".game-container").appendChild(richGuyBubble);
 
-  let positionX = 10; // Initial position of main character (% of viewport width)
-  const speed = 1; // Reduced speed of movement
+  let positionX = 10;
+  const speed = 1;
 
   let isMovingLeft = false;
   let isMovingRight = false;
-  let isConversationActive = false; // Restrict movement during conversation
-  let hasConversationHappened = false; // Ensure conversation happens only once
+  let isConversationActive = false;
+  let hasConversationHappened = false;
   let scene2Active = false;
 
-  // Function to start walking animation
   function startWalking(direction, character, rowY) {
     if (direction === "right") {
       character.style.animation = `walk-right 0.5s steps(3) infinite`;
@@ -29,12 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Function to stop walking animation
   function stopWalking(character) {
     character.style.animation = "none";
   }
 
-  // Function to move the character
   function moveCharacter() {
     if (isConversationActive || scene2Active) return;
 
@@ -52,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     detectCollision();
   }
 
-  // Collision detection
   function detectCollision() {
     const mainRect = mainCharacter.getBoundingClientRect();
     const girlRect = girlCharacter.getBoundingClientRect();
@@ -70,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Function to start the conversation
   function startConversation() {
     isConversationActive = true;
     hasConversationHappened = true;
@@ -112,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showDialogue();
   }
 
-  // Function to handle the heart animation
   function triggerHeartAnimation() {
     for (let i = 0; i < 10; i++) {
       const heart = document.createElement("div");
@@ -129,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   }
 
-  // Function to start Scene 2
   function startScene2() {
     if (!scene2Active) {
       scene2Active = true;
@@ -149,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
           clearInterval(interval);
           stopWalking(girlCharacter);
           richGuyCharacter.style.animation = "none";
-          richGuyCharacter.style.backgroundPositionY = "-64px"; // Turn to 2nd row
+          richGuyCharacter.style.backgroundPositionY = "-64px";
           setTimeout(() => {
             startDialogueBetweenGirlAndRichGuy();
           }, 500);
@@ -158,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Dialogue between the girl and the rich guy
   function startDialogueBetweenGirlAndRichGuy() {
     let dialogueIndex = 0;
     const conversation = [
@@ -196,7 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showDialogue();
   }
 
-  // Function for girl and rich guy walking out together
   function walkOutTogether() {
     let girlPosition = 52;
     let richGuyPosition = 55;
@@ -220,7 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 50);
   }
 
-  // Main character's reaction after the girl and rich guy leave
   function triggerMainCharacterReaction() {
     mainBubble.textContent = "You gotta be kidding me...";
     mainBubble.style.display = "block";
@@ -228,16 +218,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       mainBubble.style.display = "none";
 
-      // Trigger death animation frame-by-frame
       let frame = 0;
-      const totalFrames = 13; // Assuming 13 frames in the 21st row
-      const frameWidth = 64; // Each frame's width in pixels
-      const deathRowY = -1344; // Y-position for the 21st row
+      const totalFrames = 13;
+      const frameWidth = 64;
+      const deathRowY = -1344;
 
-      mainCharacter.style.display = "block"; // Ensure the character is visible
+      mainCharacter.style.display = "block";
       const deathAnimationInterval = setInterval(() => {
-        mainCharacter.style.backgroundPositionX = `-${frame * frameWidth}px`; // Horizontal frame
-        mainCharacter.style.backgroundPositionY = `${deathRowY}px`; // Vertical position
+        mainCharacter.style.backgroundPositionX = `-${frame * frameWidth}px`;
+        mainCharacter.style.backgroundPositionY = `${deathRowY}px`;
         frame++;
 
         if (frame >= totalFrames) {
@@ -277,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(moveCharacter, 16);
 
-  // Add header dynamically
   const header = document.createElement("header");
   header.style.position = "fixed";
   header.style.top = "0";
@@ -287,28 +275,27 @@ document.addEventListener("DOMContentLoaded", () => {
   header.style.color = "white";
   header.style.display = "flex";
   header.style.alignItems = "center";
-  header.style.justifyContent = "space-between"; // Space elements evenly between left and right
+  header.style.justifyContent = "space-between";
   header.style.padding = "0 20px";
   header.style.boxSizing = "border-box";
 
   const title = document.createElement("div");
   title.textContent = "What A Story";
-  title.style.fontFamily = "'Press Start 2P', cursive"; // Pixelated font
+  title.style.fontFamily = "'Press Start 2P', cursive";
   title.style.fontSize = "16px";
   title.style.color = "white";
 
   const controls = document.createElement("div");
   controls.textContent = "A for Left | D for Right";
-  controls.style.fontFamily = "'Press Start 2P', cursive"; // Pixelated font
+  controls.style.fontFamily = "'Press Start 2P', cursive";
   controls.style.fontSize = "12px";
   controls.style.color = "white";
-  controls.style.textAlign = "right"; // Ensure right alignment of the text
+  controls.style.textAlign = "right";
 
-  header.appendChild(title); // Add title to the left
-  header.appendChild(controls); // Add controls to the right
+  header.appendChild(title);
+  header.appendChild(controls);
   document.body.prepend(header);
 
-  // Add footer dynamically
   const footer = document.createElement("footer");
   footer.style.position = "fixed";
   footer.style.bottom = "0";
@@ -323,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerText = document.createElement("div");
   footerText.textContent =
     "Yea this story was very disappointing, yea life is as well. Just accept it!";
-  footerText.style.fontFamily = "'Press Start 2P', cursive"; // Pixelated font
+  footerText.style.fontFamily = "'Press Start 2P', cursive";
   footerText.style.fontSize = "12px";
   footerText.style.textAlign = "center";
 
