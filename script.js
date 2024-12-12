@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Main character's reaction after the girl and rich guy leave
   function triggerMainCharacterReaction() {
-    mainBubble.textContent = "No... This can't be happening...";
+    mainBubble.textContent = "You gotta be kidding me...";
     mainBubble.style.display = "block";
 
     setTimeout(() => {
