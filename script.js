@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const footerText = document.createElement("div");
   footerText.textContent =
-    "Yea this story was very disappointing, yea life is as well. Just accept it!";
+    "Yea this story was very disappointing, life also is. Just accept it!";
   footerText.style.fontFamily = "'Press Start 2P', cursive";
   footerText.style.fontSize = "12px";
   footerText.style.textAlign = "center";
